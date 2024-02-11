@@ -4,16 +4,16 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                <div class="shrink-0 flex items-center text-lg">
                     <a href="{{ route('dashboard') }}">
                         {{-- <x-application-logo class="block h-9 w-auto fill-current text-gray-800" /> --}}
-
+                        <img src="{{ asset('img/logo_2.png') }}" class="w-20 h-20 fill-current text-gray-500" alt="Logo">
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-xl">
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('dashboard')" class="">
                         {{ __('OneTravelBlog') }}
                     </x-nav-link>
                 </div>
