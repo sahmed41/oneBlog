@@ -22,20 +22,23 @@
             </script>
         @endif
 
-            <form method="post" action="{{route('blog.add')}}" class="w-75 m-auto">
+            <form method="post" action="{{route('blog.add')}}" enctype="multipart/form-data" class="w-75 m-auto">
                 @csrf
                 @method('post')
                 {{-- <input type="text" name="title" id="title" class="rounded border border-success p-2 mb-2 border-opacity-50 block w-100" placeholder="Post Title"> --}}
 
                 {{-- <textarea name="content" id="content" class="w-100 h-75"></textarea> --}}
                 <div class="form-floating">
-                    <input type="text" name="title" id="title" class="form-control rounded border p-2 mb-2 border-opacity-50 block w-100" placeholder="Post Title">
+                    <input type="text" name="title" id="title" class="form-control rounded border p-2 mb-2 border-opacity-50 block w-100" placeholder="Post Title" required>
                     <label for="title">Post Title</label>
                 </div>
                 <div class="form-floating">
-                    <textarea class="form-control" name="content" placeholder="Post Content" id="floatingTextarea2" style="height: 100px" cols="100"></textarea>
+                    <textarea class="form-control" name="content" placeholder="Post Content" id="floatingTextarea2" style="height: 100px" cols="100" required></textarea>
                     <label for="floatingTextarea2">Post Content</label>
-                  </div>
+                </div>
+                <div class="input-group">
+                    <input type="file" name="image" class="form-control rounded border p-2 my-2 border-opacity-50 block w-100" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                </div>
                 <input type="hidden" name="author" value="{{Auth::user()->name}}">
                 <input type="submit" value="Add Post" type="button" class="btn btn-dark bg-dark my-3">
             </form>

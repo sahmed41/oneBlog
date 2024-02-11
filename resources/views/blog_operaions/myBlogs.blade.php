@@ -31,6 +31,9 @@
                             <a href="{{route('blog.singleBlog',['blog'=>$blog])}}" class="block fs-5 my-3">
                                 {{$blog->title}}
                             </a>
+                            <a href="{{route('blog.singleBlog',['blog'=>$blog])}}" class="block fs-5 my-3">
+                                <img src="{{ asset('uploads/postImage/' . $blog->image) }}" alt="" class="w-25 h-25 d-inline-block">
+                            </a>
                             <div class="operations flex my-2">
                                 <a href="{{route('blog.editForm',['blog'=>$blog])}}" type="button" class="btn btn-dark bg-dark me-2">Edit</a>
                                 <form method="post" action="{{route('blog.delete',['blog'=>$blog])}}">

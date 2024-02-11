@@ -29,6 +29,9 @@
                         <a href="{{route('blog.singleBlog',['blog'=>$blog])}}">
                             {{$blog->title}}
                         </a>
+                        <a href="{{route('blog.singleBlog',['blog'=>$blog])}}" class="block fs-5 my-3">
+                            <img src="{{ asset('uploads/postImage/' . $blog->image) }}" alt="" class="w-25 h-25 d-inline-block">
+                        </a>
                     </div>
                 </div>
             @endforeach

@@ -29,18 +29,23 @@
                 </ul>
             </div>
 
-            <form method="post" action="{{route('blog.update',['blog'=>$blog])}}">
+            <form method="post" action="{{route('blog.update',['blog'=>$blog])}}" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="input-group mb-3 w-100">
                     <span class="input-group-text" id="basic-addon1">Post Title</span>
-                    <input type="text" name="title" id="title" value="{{$blog->title}}" class="form-control"/>
+                    <input type="text" name="title" id="title" value="{{$blog->title}}" class="form-control" required/>
                 </div>
                 <div class="form-floating">
                     <span class="input-group-text" id="basic-addon1">Post Content</span>
-                    <textarea class="form-control" name="content" placeholder="Post Content" id="floatingTextarea2" style="height: 100px" cols="100">{{$blog->content}}</textarea>
+                    <textarea class="form-control" name="content" placeholder="Post Content" id="floatingTextarea2" style="height: 100px" cols="100" required>{{$blog->content}}</textarea>
                     {{-- <label for="floatingTextarea2">Post Content</label> --}}
                 </div>
+
+                <div class="input-group">
+                    <input type="file" name="image" class="form-control rounded border p-2 my-2 border-opacity-50 block w-100" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                </div>
+                <input type="hidden" name="missingImage" value="{{$blog->image}}">
                 <input type="hidden" name="author" value="{{Auth::user()->name}}">
                 <input type="submit" value="Update" type="button" class="btn btn-dark bg-dark my-3">
             </form>

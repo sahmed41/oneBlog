@@ -18,10 +18,29 @@ class BlogController extends Controller
 
         $data = $request->validate([
             'title' => 'required',
+            'image' => 'nullable|mimes:png,jpg,jpeg,webp',
             'content' => 'required',
             'author' => 'required'
         ]);
-        $newBlog = Blog::create($data);
+
+        $filename = 'postImage.jpeg';
+
+        if ($request->has('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = $request->title . '-' . time() . '.' . $extension;
+            $path = 'uploads/postImage/';
+            $file->move($path, $filename);
+        }
+
+        // dd($filename);
+        $blog = new Blog;
+        $blog->title = $request->title;
+        $blog->image = $filename;
+        $blog->content = $request->content;
+        $blog->author = $request->author;
+        $blog->save();
+
         return redirect(route('blog.create'))->with('success','The blog is successfully added!');
     }
 
@@ -41,13 +60,44 @@ class BlogController extends Controller
 
     public function blogUpdate(Blog $blog, Request $request) {
         // dd($blog->id);
+        // $data = $request->validate([
+        //     'title' => 'required',
+        //     'content' => 'required',
+        //     'author' => 'required'
+        // ]);
+        // Blog::where('id', $blog->id)->update($data);
+        // return redirect(route('blog.view'))->with('success','The blog is successfully updated!');
+
         $data = $request->validate([
             'title' => 'required',
+            'image' => 'nullable|mimes:png,jpg,jpeg,webp',
             'content' => 'required',
             'author' => 'required'
         ]);
-        Blog::where('id', $blog->id)->update($data);
+
+        $filename = "postImage.jpeg";
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = $request->title . '-' . time() . '.' . $extension;
+            $path = 'uploads/postImage/';
+            $file->move($path, $filename);
+        } else {
+            $filename = $request->missingImage;
+        }
+
+
+        // dd($filename);
+        // $blog = Blog::where('id', $blog->id)->update($data);
+        $blog->title = $request->title;
+        $blog->image = $filename;
+        $blog->content = $request->content;
+        $blog->author = $request->author;
+        $blog->save();
+
         return redirect(route('blog.view'))->with('success','The blog is successfully updated!');
+
     }
 
     public function blogDelete(Blog $blog) {

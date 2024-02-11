@@ -22,6 +22,9 @@
                     <p class="text-md">Posted On: {{$blog->created_at}}</p>
                 </div>
                 <hr class="border-black my-3">
+
+                <img src="{{ asset('uploads/postImage/' . $blog->image) }}" alt="" class="w-75 m-auto h-25 d-inline-block">
+
                 <div class="text-lg my-5 text-start">
                     {{$blog->content}}
                 </div>
