@@ -55,4 +55,8 @@ class BlogController extends Controller
         Blog::where('id', $blog->id)->delete();
         return redirect(route('blog.view'))->with('success','The blog is successfully updated!');
     }
+
+    public function getBlog(Blog $blog) {
+        return view('blog_operaions.singleBlog',['blog'=> $blog]);
+    }
 }

@@ -44,4 +44,13 @@
             </x-primary-button>
         </div>
     </form>
+    <p class="my-5">
+        Please click here if you don't have an account
+        <a class="underline text-lg text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ms-3" href="{{ route('register') }}">
+            {{ __('Here!') }}
+        </a>
+    </p>
+    {{-- <x-primary-button class="ms-3">
+        <a href="{{route('register')}}">Register</a>
+    </x-primary-button> --}}
 </x-guest-layout>
