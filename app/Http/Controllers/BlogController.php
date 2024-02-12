@@ -28,7 +28,7 @@ class BlogController extends Controller
         if ($request->has('image')) {
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
-            $filename = $request->title . '-' . time() . '.' . $extension;
+            $filename = time() . '.' . $extension;
             $path = 'uploads/postImage/';
             $file->move($path, $filename);
         }
@@ -41,7 +41,7 @@ class BlogController extends Controller
         $blog->author = $request->author;
         $blog->save();
 
-        return redirect(route('blog.create'))->with('success','The blog is successfully added!');
+        return redirect(route('blog.view'))->with('success','The blog is successfully added!');
     }
 
     public function viewBlog() {
@@ -80,7 +80,7 @@ class BlogController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
-            $filename = $request->title . '-' . time() . '.' . $extension;
+            $filename = time() . '.' . $extension;
             $path = 'uploads/postImage/';
             $file->move($path, $filename);
         } else {
